@@ -1,5 +1,5 @@
 name: hello
-base: core20
+base: core22
 confinement: strict
 grade: stable
 
@@ -11,7 +11,7 @@ architectures:
   - build-on: riscv64
   - build-on: s390x
 
-version: "2.12"
+version: "2.12.1"
 summary: GNU Hello
 description: GNU hello prints a friendly greeting.
 
@@ -26,8 +26,7 @@ apps:
 
 parts:
   gnu-hello:
-    source: http://ftp.gnu.org/gnu/$SNAPCRAFT_PROJECT_NAME/$SNAPCRAFT_PROJECT_NAME-$SNAPCRAFT_PROJECT_VERSION.tar.gz
-    source-checksum: sha256/cf04af86dc085268c5f4470fbae49b18afbc221b78096aab842d934a76bad0ab
+    source: https://ftp.gnu.org/gnu/$SNAPCRAFT_PROJECT_NAME/$SNAPCRAFT_PROJECT_NAME-$SNAPCRAFT_PROJECT_VERSION.tar.gz
     plugin: autotools
     autotools-configure-parameters:
       - --prefix=/
