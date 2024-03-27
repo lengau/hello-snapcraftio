@@ -1,15 +1,16 @@
 name: hello
-base: core22
+base: core24
+build-base: devel
 confinement: strict
-grade: stable
+grade: devel
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-  - build-on: armhf
-  - build-on: ppc64el
-  - build-on: riscv64
-  - build-on: s390x
+platforms:
+  amd64:
+  arm64:
+  armhf:
+  ppc64el:
+  riscv64:
+  s390x:
 
 version: "2.12.1"
 summary: GNU Hello
@@ -26,7 +27,16 @@ apps:
 
 parts:
   gnu-hello:
-    source: https://ftp.gnu.org/gnu/$SNAPCRAFT_PROJECT_NAME/$SNAPCRAFT_PROJECT_NAME-$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    source: https://git.savannah.gnu.org/git/$SNAPCRAFT_PROJECT_NAME.git
+    source-tag: v$SNAPCRAFT_PROJECT_VERSION
     plugin: autotools
+    build-packages:
+      - wget
+      - gperf
+      - texinfo
+      - help2man
     autotools-configure-parameters:
       - --prefix=/
+    stage:
+      - -share/man
+      - -share/info
